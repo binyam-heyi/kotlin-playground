@@ -96,4 +96,53 @@ class CourseControllerUnitTest {
 
 
     }
+    @Test
+    fun addCourse_validation() {
+        val courseDto = CourseDTO(
+            null,
+            " ",
+            " "
+        )
+
+        every {
+            courseService.addCourse(any()) } returns courseDTO(id=1)
+
+        val response = webTestClient
+            .post()
+            .uri("/v1/courses")
+            .bodyValue(courseDto)
+            .exchange()
+            .expectStatus().isBadRequest
+            .expectBody(String::class.java)
+            .returnResult()
+            .responseBody
+
+        Assertions.assertEquals("courseDTO.category must not be blank, courseDTO.name must not be blank", response)
+
+    }
+    @Test
+    fun addCourse_allException() {
+        val courseDto = CourseDTO(
+            null,
+            "Test",
+            "Test Category "
+        )
+
+        every {
+            courseService.addCourse(any()) } throws  RuntimeException("Unexpected Error Happens")
+
+        val response = webTestClient
+            .post()
+            .uri("/v1/courses")
+            .bodyValue(courseDto)
+            .exchange()
+            .expectStatus().is5xxServerError
+            .expectBody(String::class.java)
+            .returnResult()
+            .responseBody
+
+
+
+    }
+
 }
