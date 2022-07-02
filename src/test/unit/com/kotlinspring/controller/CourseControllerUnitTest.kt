@@ -1,7 +1,6 @@
 package com.kotlinspring.controller
 
 import com.kotlinspring.dto.CourseDTO
-import com.kotlinspring.entity.Course
 import com.kotlinspring.service.CourseService
 import com.ninjasquad.springmockk.MockkBean
 import com.springkotlin.util.courseDTO
@@ -52,7 +51,7 @@ class CourseControllerUnitTest {
 
     @Test
     fun retrieveCourses() {
-        every { courseService.retrieveAllCourses() }.returnsMany (
+        every { courseService.retrieveAllCourses(any()) }.returnsMany (
                 listOf(courseDTO(id=1), courseDTO(id=2), courseDTO(id=3))
                 )
 
