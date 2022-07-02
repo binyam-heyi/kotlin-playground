@@ -27,7 +27,8 @@ class CourseControllerUnitTest {
         val courseDto = CourseDTO(
             null,
             "Build RestFul APis using Spring Boot and Kotlin",
-            "Development"
+            "Development",
+            1
         )
 
         every {
@@ -100,7 +101,7 @@ class CourseControllerUnitTest {
         val courseDto = CourseDTO(
             null,
             " ",
-            " "
+            " ", 1
         )
 
         every {
@@ -124,7 +125,7 @@ class CourseControllerUnitTest {
         val courseDto = CourseDTO(
             null,
             "Test",
-            "Test Category "
+            "Test Category ", 1
         )
 
         every {

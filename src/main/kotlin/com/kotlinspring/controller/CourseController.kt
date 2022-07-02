@@ -15,6 +15,7 @@ class CourseController(val courseService: CourseService) {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     fun addCourse(@RequestBody @Valid courseDTO: CourseDTO): CourseDTO {
+
        return courseService.addCourse(courseDTO)
     }
     @GetMapping

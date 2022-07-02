@@ -39,4 +39,10 @@ class GlobalErrorHandler: ResponseEntityExceptionHandler() {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
             .body(ex.message)
     }
+    @ExceptionHandler(InstantiationException::class)
+    fun instructorNotValidException(ex:Exception, request: WebRequest): ResponseEntity<Any>{
+        logger.error("Exception observed :${ex.message}", ex)
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+            .body(ex.message)
+    }
 }
